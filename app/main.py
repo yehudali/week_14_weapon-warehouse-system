@@ -5,6 +5,7 @@ import pandas as pd
 import json
 
 from servic import processing_data
+from db import init_databes
 
 
 app = FastAPI()
@@ -13,6 +14,7 @@ app = FastAPI()
 async def upload_file(file: UploadFile):
     df = pd.read_csv(file.file)
     df = processing_data(df)
+    init_databes()
     return {"filename": df.info()}
 
 
