@@ -36,23 +36,34 @@ def init_databes():
 
         cursor.execute('''
 
-use `test_database`;
-CREATE table IF not exists my_table (
-    id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    weapon_id varchar(255),
-    weapon_name varchar(255),
-    weapon_type varchar(255),
-    range_km int,
-    weight_kg float,
-    manufacturer varchar(255),
-    origin_country varchar(225),
-    storage_location varchar(255),
-    year_estimated int,
-    risk_level varchar(255)
-);
+        use `test_database`;
+        CREATE table IF not exists my_table (
+            id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            weapon_id varchar(255),
+            weapon_name varchar(255),
+            weapon_type varchar(255),
+            range_km int,
+            weight_kg float,
+            manufacturer varchar(255),
+            origin_country varchar(225),
+            storage_location varchar(255),
+            year_estimated int,
+            risk_level varchar(255)
+        );
 
-            ''')
+                    ''')
+        cursor.close()
+        connection.close()
 
+def insert_df_to_db(df:DataFrame)->bool:
+    host, port , user, password, database = get_dhe_env()
+    connection= get_conn(host, port , user, password, database)
 
-
+    if connection is not None:
+        cursor = connection.cursor(dictionary=True)
     
+        cursor.execute('''''')
+
+        df.to_dict()
+    
+    return False
