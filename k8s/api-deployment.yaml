@@ -5,7 +5,7 @@ metadata:
   labels:
     app: api
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: api
@@ -19,3 +19,14 @@ spec:
         image: yehudalinker/api:v1
         ports:
         - containerPort: 8000
+        env:
+        - name: HOST
+          value: mysql
+        - name: PORT
+          value: "3306"
+        - name: USER
+          value: "root"
+        - name: PASSWORD
+          value: "0533863104"
+        - name: DATABASE
+          value: "test_database"
