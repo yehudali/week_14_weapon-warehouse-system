@@ -1,0 +1,11 @@
+docker build -t yehudalinker/app:v1 .
+docker push yehudalinker/app:v1
+oc apply -f ./k8s/mysql-statefulset.yaml
+oc get all
+oc apply -f ./mysql-service.yaml
+oc get svc
+oc apply -f ./api-deployment.yaml
+oc get pod
+oc apply -f ./api-service.yaml
+oc get svc
+oc get all
